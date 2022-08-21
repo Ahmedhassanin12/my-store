@@ -1,0 +1,84 @@
+<ng-container *ngIf="products.length >= 1">
+  <div class="container">
+    <div class="row py-4">
+      <div class="col-6">
+        <div *ngFor="let prod of products" class="mb-2">
+          <div>
+            <img
+              class="img-fluid w-50"
+              src="{{ prod?.url }}"
+              alt="{{ prod?.name }}"
+              style="width: 130px; height: 270px"
+            />
+          </div>
+          <p class="mb-2">{{ prod.name }}</p>
+          <P class="mb-2">{{ prod.price }}</P>
+          <form>
+            <label for="amount">amount</label>
+            <input
+              type="number"
+              value="{{ prod.quantity }}"
+              id="amount"
+              class="form-control w-25"
+            />
+          </form>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <form #formValue="ngForm" (ngSubmit)="handelSubmit(formValue.value)">
+          <div class="my-2">
+            <label for="name">enter your name</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="enter your name"
+              id="name"
+              name="yourName"
+              required
+              minlength="3"
+              maxlength="15"
+              [(ngModel)]="yourName"
+            />
+          </div>
+          <div class="my-2">
+            <label for="address">enter your address</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="enter your address"
+              id="address"
+              name="yourAddress"
+              required
+              minlength="8"
+              maxlength="30"
+              [(ngModel)]="yourAddress"
+            />
+          </div>
+          <div class="my-2">
+            <label for="cardNumber">enter your card</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="enter your card"
+              id="cardNumber"
+              name="yourCardNumber"
+              required
+              
+              [(ngModel)]="yourCardNumber"
+              maxlength="14"
+            />
+          </div>
+          <button type="submit" [disabled]="formValue.invalid" class="btn btn-success">submit</button>
+        </form>
+      </div>
+    </div>
+    <p class="pt-5 fs-3 fw-bold">Total Price {{ grandTotal.toFixed(2) }}</p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="products.length == 0">
+  <div class="text-center text-danger">
+    <P>Your cart is empty</P>
+  </div>
+</ng-container>

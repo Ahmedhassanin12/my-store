@@ -1,0 +1,38 @@
+<div class="container py-5" *ngIf="product">
+  <div class="d-flex flex-xs-column flex-md-row align-items-center justify-content-center gap-4">
+    <div>
+      <img
+        class="img-fluid"
+        src="{{ product.url }}"
+        alt="{{ product.name }}"
+        style="width: 350px;"
+      />
+    </div>
+    <div>
+      <p class="mb-2">{{ product.name }}</p>
+      <P class="mb-2">{{ product.price }}</P>
+      <div class="mb-2">
+        <form>
+          <select id="number" (change)="getNumber($event)">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </form>
+      </div>
+      <button class="btn btn-dark mb-4" (click)="addToCart(product, quantity)">add to cart</button>
+      <div>
+        <a class="btn btn-outline-primary" routerLink="/products">back to product list</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

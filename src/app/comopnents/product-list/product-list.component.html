@@ -1,0 +1,31 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-lg-3 d-flex flex-column justify-content-center align-items-center" *ngFor="let prod of products">
+      <div [routerLink]="['/products', prod.id]">
+        <img class="img-fluid " src={{prod.url}} alt={{prod.name}} />
+      </div>
+      <p class="mb-2">{{prod.name}}</p>
+      <P class="mb-2">{{prod.price}}</P>
+      <div class="mb-2">
+        <form>
+          <select id="number" (change)="getNumber($event)">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </form>
+      </div>
+      <button class="btn btn-dark mb-4" (click)="addToCart(prod, quantity)">add to cart</button>
+    </div>
+
+  </div>
+
+</div>
