@@ -20,8 +20,10 @@
               value="{{ prod.quantity }}"
               id="amount"
               class="form-control w-25"
+              (change)="handelChange($event, prod.id ,prod.quantity)"
             />
           </form>
+          <button (click)="remove(prod)">remove</button>
         </div>
       </div>
 
@@ -39,7 +41,9 @@
               minlength="3"
               maxlength="15"
               [(ngModel)]="yourName"
+
             />
+
           </div>
           <div class="my-2">
             <label for="address">enter your address</label>
@@ -64,12 +68,17 @@
               id="cardNumber"
               name="yourCardNumber"
               required
-              
               [(ngModel)]="yourCardNumber"
               maxlength="14"
             />
           </div>
-          <button type="submit" [disabled]="formValue.invalid" class="btn btn-success">submit</button>
+          <button
+            type="submit"
+            [disabled]="formValue.invalid"
+            class="btn btn-success"
+          >
+            submit
+          </button>
         </form>
       </div>
     </div>

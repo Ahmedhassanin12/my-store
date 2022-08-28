@@ -11,12 +11,12 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   products: Product[] = [];
-  formValue!:FormGroup
+  formValue!: FormGroup;
   grandTotal!: number;
-  yourName:string = ''
-  yourAddress:string=''
-  yourCardNumber:string =''
-  constructor(private cart: CartService, private router:Router) {
+  yourName: string = '';
+  yourAddress: string = '';
+  yourCardNumber: string = '';
+  constructor(private cart: CartService, private router: Router) {
     this.products = this.cart.getItems();
     this.grandTotal = this.cart.getTotalPrice();
     console.log(this.grandTotal);
@@ -26,7 +26,24 @@ export class CartComponent implements OnInit {
     // this.products = this.cart.getItems()
     // console.log(this.products);
   }
-  handelSubmit(value:any){
-    this.router.navigate(["confirm"], {state: {...value , price: this.grandTotal}, replaceUrl: true})
+
+  
+
+  handelChange(e: any, id: number, quantity: number | undefined) {
+    if (+e.target.value < 1) {
+      e.target.value = 1;
+    }
+    this.cart.getTotalPrice()
+  }
+  handelSubmit(value: any) {
+    this.router.navigate(['confirm'], {
+      state: { ...value, price: this.grandTotal },
+      replaceUrl: true,
+    });
+  }
+
+  remove(product: Product) {
+    this.cart.deleteProd(product);
+    alert('you removed the item from the cart');
   }
 }

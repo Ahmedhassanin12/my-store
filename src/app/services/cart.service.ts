@@ -22,4 +22,11 @@ export class CartService {
     })
     return grandTotal;
   }
+  deleteProd(product:any) {
+     this.items.map((item, index)=> {
+      if (item.id === product.id) {
+           this.items.splice(index, 1)
+      }
+    })
+  }
 }
