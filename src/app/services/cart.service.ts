@@ -2,31 +2,33 @@ import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-  items: Product[] = []
-  constructor() { }
+  items: Product[] = [];
+  constructor() {}
   addToCart(product: Product) {
-    this.items.push(product);
+    this.items.includes(product)
+      ? alert('you alerdy add the item')
+      : this.items.push(product);
   }
 
   getItems() {
     return this.items;
   }
 
-  getTotalPrice() : number{
+  getTotalPrice(): number {
     let grandTotal = 0;
-    this.items.map((a:any)=>{
+    this.items.map((a: any) => {
       grandTotal += a.price * a.quantity;
-    })
+    });
     return grandTotal;
   }
-  deleteProd(product:any) {
-     this.items.map((item, index)=> {
+  deleteProd(product: any) {
+    this.items.map((item, index) => {
       if (item.id === product.id) {
-           this.items.splice(index, 1)
+        this.items.splice(index, 1);
       }
-    })
+    });
   }
 }

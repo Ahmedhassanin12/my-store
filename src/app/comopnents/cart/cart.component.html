@@ -20,7 +20,7 @@
               value="{{ prod.quantity }}"
               id="amount"
               class="form-control w-25"
-              (change)="handelChange($event, prod.id ,prod.quantity)"
+              (change)="handelChange($event, prod,prod.id ,prod.quantity)"
             />
           </form>
           <button (click)="remove(prod)">remove</button>
