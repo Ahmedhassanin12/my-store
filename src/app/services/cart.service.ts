@@ -8,9 +8,7 @@ export class CartService {
   items: Product[] = [];
   constructor() {}
   addToCart(product: Product) {
-    this.items.includes(product)
-      ? alert('you alerdy add the item')
-      : this.items.push(product);
+    this.items.push(product);
   }
 
   getItems() {

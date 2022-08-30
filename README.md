@@ -1,5 +1,12 @@
 # MyStore
 
+my store is  e-commerce website for making crud operation and show products like :
+1- show list of product
+2- add to cart
+3- remove from cart
+4- show detail's of one item 
+5- make checkout 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
 
 ## Development server

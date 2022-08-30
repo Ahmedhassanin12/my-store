@@ -11,6 +11,7 @@
     <div>
       <p class="mb-2">{{ product.name }}</p>
       <P class="mb-2">{{ product.price }}</P>
+      <p class="py-2">{{product.description}}</p>
       <div class="mb-2">
         <form>
           <select id="number" (change)="getNumber($event)">
@@ -27,6 +28,7 @@
           </select>
         </form>
       </div>
+
       <button class="btn btn-dark mb-4" (click)="addToCart(product, quantity)">add to cart</button>
       <div>
         <a class="btn btn-outline-primary" routerLink="/products">back to product list</a>

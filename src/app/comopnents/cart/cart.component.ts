@@ -27,16 +27,18 @@ export class CartComponent implements OnInit {
     // console.log(this.products);
   }
 
-
-
-  handelChange(e: any,prod:Product, id: number, quantity: number | undefined) {
+  handelChange(
+    e: any,
+    prod: Product,
+    id: number,
+    quantity: number | undefined
+  ) {
     if (+e.target.value < 1) {
       e.target.value = 1;
     } else {
       prod.quantity = parseInt(e.target.value);
-      this.grandTotal = this.cart.getTotalPrice()
+      this.grandTotal = this.cart.getTotalPrice();
     }
-
   }
   handelSubmit(value: any) {
     this.router.navigate(['confirm'], {
@@ -48,6 +50,6 @@ export class CartComponent implements OnInit {
   remove(product: Product) {
     this.cart.deleteProd(product);
     alert('you removed the item from the cart');
-    this.grandTotal = this.cart.getTotalPrice()
+    this.grandTotal = this.cart.getTotalPrice();
   }
 }
