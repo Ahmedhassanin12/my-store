@@ -8,7 +8,8 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class ConfirmationComponent implements OnInit {
   yourName: {}  | undefined
-  price:{}| undefined
+  price:{}| undefined;
+  info:{} | undefined
   constructor(private router: Router) {
     this.yourName = this.router.getCurrentNavigation()?.extras.state?.['yourName'];
     this.price = this.router.getCurrentNavigation()?.extras.state?.['price'];
@@ -19,5 +20,10 @@ export class ConfirmationComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  // infoAbout(value:any){
+  //       this.info = value;
+  //       console.log(this.info, value);
+  // }
 
 }

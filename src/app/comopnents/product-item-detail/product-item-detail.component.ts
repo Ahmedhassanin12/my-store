@@ -34,7 +34,12 @@ export class ProductItemDetailComponent implements OnInit {
  }
 
   addToCart(prod: Product, quantity: number) {
-    this.cart.addToCart({ ...prod, quantity });
-    alert('Your product has been added to the cart!');
+    const isItem = this.cart.getItems().find((item) => item.id === prod.id);
+    if (isItem) {
+      alert('item already in the cart');
+    } else {
+      this.cart.addToCart({ ...prod, quantity });
+      alert('Your product has been added to the cart!');
+    }
   }
 }

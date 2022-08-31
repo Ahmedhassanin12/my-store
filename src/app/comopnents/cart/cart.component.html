@@ -20,7 +20,7 @@
               value="{{ prod.quantity }}"
               id="amount"
               class="form-control w-25"
-              (change)="handelChange($event, prod,prod.id ,prod.quantity)"
+              (change)="handelChange($event, prod, prod.id, prod.quantity)"
             />
           </form>
           <button (click)="remove(prod)">remove</button>
@@ -28,7 +28,8 @@
       </div>
 
       <div class="col-6">
-        <form #formValue="ngForm" (ngSubmit)="handelSubmit(formValue.value)">
+        <form #formVal="ngForm" [formGroup]="formValue" (ngSubmit)="handelSubmit(formVal.value)">
+          <!-- name -->
           <div class="my-2">
             <label for="name">enter your name</label>
             <input
@@ -37,14 +38,28 @@
               placeholder="enter your name"
               id="name"
               name="yourName"
-              required
-              minlength="3"
-              maxlength="15"
+              formControlName="yourName"
               [(ngModel)]="yourName"
-
+              [class.is-valid]="allInput.yourName?.valid"
+            [class.is-invalid]="
+              allInput.yourName?.touched && allInput.yourName?.invalid
+            "
             />
-
+            <div
+              class="alert alert-warning"
+              [hidden]="
+                allInput.yourName?.valid || allInput.yourName?.untouched
+              "
+            >
+              <small *ngIf="allInput.yourName?.errors?.['required']">
+                your Name is required
+              </small>
+              <small *ngIf="allInput.yourName?.errors?.['minlength']">
+                your Name must be at least 3 letters
+              </small>
+            </div>
           </div>
+          <!-- address -->
           <div class="my-2">
             <label for="address">enter your address</label>
             <input
@@ -53,12 +68,24 @@
               placeholder="enter your address"
               id="address"
               name="yourAddress"
-              required
-              minlength="8"
-              maxlength="30"
               [(ngModel)]="yourAddress"
+              formControlName="yourAddress"
             />
+            <div
+              class="alert alert-warning"
+              [hidden]="
+                allInput.yourAddress?.valid || allInput.yourAddress?.untouched
+              "
+            >
+              <small *ngIf="allInput.yourAddress?.errors?.['required']">
+                your Address is required
+              </small>
+              <small *ngIf="allInput.yourAddress?.errors?.['minlength']">
+                your Address must be at least 8 letters
+              </small>
+            </div>
           </div>
+          <!-- card number -->
           <div class="my-2">
             <label for="cardNumber">enter your card</label>
             <input
@@ -67,10 +94,24 @@
               placeholder="enter your card"
               id="cardNumber"
               name="yourCardNumber"
-              required
               [(ngModel)]="yourCardNumber"
-              maxlength="14"
+              formControlName="yourCardNumber"
             />
+
+            <div
+              class="alert alert-warning"
+              [hidden]="
+                allInput.yourCardNumber?.valid ||
+                allInput.yourCardNumber?.untouched
+              "
+            >
+              <small *ngIf="allInput.yourCardNumber?.errors?.['required']">
+                your CardNumber is required
+              </small>
+              <small *ngIf="allInput.yourCardNumber?.errors?.['pattern']">
+                your CardNumber must be 14 number
+              </small>
+            </div>
           </div>
           <button
             type="submit"

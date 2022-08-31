@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,7 +11,7 @@ import { ConfirmationComponent } from './comopnents/confirmation/confirmation.co
 import { ProductListComponent } from './comopnents/product-list/product-list.component';
 import { ProductItemComponent } from './comopnents/product-item/product-item.component';
 import { ProductItemDetailComponent } from './comopnents/product-item-detail/product-item-detail.component';
-import { FormsModule } from '@angular/forms';
+
 import { HeaderComponent } from './comopnents/header/header.component';
 
 @NgModule({
@@ -22,7 +24,7 @@ import { HeaderComponent } from './comopnents/header/header.component';
     ProductItemDetailComponent,
     HeaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

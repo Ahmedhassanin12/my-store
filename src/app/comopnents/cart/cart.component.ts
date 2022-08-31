@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
@@ -11,15 +11,39 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   products: Product[] = [];
-  formValue!: FormGroup;
+  formValue: FormGroup;
   grandTotal!: number;
   yourName: string = '';
   yourAddress: string = '';
   yourCardNumber: string = '';
-  constructor(private cart: CartService, private router: Router) {
+
+  @Output() inputValue: EventEmitter<any> = new EventEmitter;
+
+  constructor(
+    private cart: CartService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
     this.products = this.cart.getItems();
     this.grandTotal = this.cart.getTotalPrice();
-    console.log(this.grandTotal);
+    // console.log(this.grandTotal);
+    // form validation
+    this.formValue = this.fb.group({
+      yourName: ['', [Validators.required, Validators.minLength(3)]],
+      yourAddress: ['', [Validators.required, Validators.minLength(8)]],
+      yourCardNumber: [
+        '',
+        [Validators.required, Validators.pattern(/\d{14}/g)],
+      ],
+    });
+  }
+
+  get allInput() {
+    return {
+      yourName: this.formValue.get('yourName') as FormGroup,
+      yourAddress: this.formValue.get('yourAddress') as FormGroup,
+      yourCardNumber: this.formValue.get('yourCardNumber') as FormGroup,
+    };
   }
 
   ngOnInit(): void {
@@ -45,6 +69,7 @@ export class CartComponent implements OnInit {
       state: { ...value, price: this.grandTotal },
       replaceUrl: true,
     });
+    this.inputValue.emit({ ...value, price: this.grandTotal })
   }
 
   remove(product: Product) {
