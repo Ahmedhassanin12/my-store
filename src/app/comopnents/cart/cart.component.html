@@ -39,7 +39,8 @@
               id="name"
               name="yourName"
               formControlName="yourName"
-              [(ngModel)]="yourName"
+              [ngModel]="yourName"
+              (ngModelChange)="yourName = $event"
               [class.is-valid]="allInput.yourName?.valid"
             [class.is-invalid]="
               allInput.yourName?.touched && allInput.yourName?.invalid
@@ -68,7 +69,8 @@
               placeholder="enter your address"
               id="address"
               name="yourAddress"
-              [(ngModel)]="yourAddress"
+              [ngModel]="yourAddress"
+              (ngModelChange)="yourAddress = $event"
               formControlName="yourAddress"
             />
             <div
@@ -94,7 +96,10 @@
               placeholder="enter your card"
               id="cardNumber"
               name="yourCardNumber"
-              [(ngModel)]="yourCardNumber"
+              [ngModel]="yourCardNumber"
+
+              (ngModelChange)="yourCardNumber = $event"
+
               formControlName="yourCardNumber"
             />
 
